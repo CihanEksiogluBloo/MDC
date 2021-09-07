@@ -3,6 +3,9 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../types";
 import TextInputComp from "../components/TextInputComp";
+import { useDispatch } from "react-redux";
+import * as authActions from "../store/actions/auth"
+
 
 const errorMessage = "This field must be filled in correctly.";
 
@@ -10,6 +13,9 @@ const Login: React.FC<NativeStackScreenProps<AuthStackParamList, "Login">> =
   () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const dispatch = useDispatch();
+
     return (
       <View>
         <Text>Login</Text>
@@ -32,7 +38,7 @@ const Login: React.FC<NativeStackScreenProps<AuthStackParamList, "Login">> =
         <Button
           title="Go"
           onPress={() => {
-            console.log(email, password);
+            dispatch(authActions.login(email,password))
           }}
         />
       </View>

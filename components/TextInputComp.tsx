@@ -5,7 +5,6 @@ import Color from "../constants/Colors";
 interface InputParams {
   Label: "Email" | "Password";
   Value: string;
-  InputValidities: boolean;
   Required: boolean;
   ErrorText: string;
   setValue: (value: string) => void;
@@ -14,24 +13,22 @@ interface InputParams {
 
 const TextInputComp: React.FC<InputParams> = ({
   ErrorText,
-  InputValidities,
   Label,
   Required,
   Value,
   setValue,
   secureTextEntry,
 }) => {
+  let isValid: boolean = true;
 
-  let isValid : boolean = true;
-
-  if(Label === "Email") {
+  if (Label === "Email") {
     const emailRegex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      
-      if (Label === "Email" && !emailRegex.test(Value.toLowerCase())) {
-        isValid = false;
-      }
+
+    if (Label === "Email" && !emailRegex.test(Value.toLowerCase())) {
+      isValid = false;
     }
+  }
 
   return (
     <View style={styles.formControl}>
