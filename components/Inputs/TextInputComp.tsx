@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import Color from "../constants/Colors";
+import Color from "../../constants/Colors";
 
 interface InputParams {
-  Label: "Email" | "Password";
+  Label: "Email" | "Password" | "Device No:";
   Value: string;
   Required: boolean;
   ErrorText: string;
-  setValue: (value: string) => void;
-  secureTextEntry: boolean;
+  setValue: (value: string ) => void;
+  secureTextEntry?: boolean;
 }
 
 const TextInputComp: React.FC<InputParams> = ({
@@ -35,7 +35,7 @@ const TextInputComp: React.FC<InputParams> = ({
       <Text style={styles.label}>{Label}</Text>
 
       <TextInput
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={secureTextEntry ? secureTextEntry : false}
         style={styles.input}
         value={Value}
         onChangeText={(e) => setValue(e)}

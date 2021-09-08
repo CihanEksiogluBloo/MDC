@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../types";
-import TextInputComp from "../components/TextInputComp";
+import TextInputComp from "../components/Inputs/TextInputComp";
 import { useDispatch } from "react-redux";
 import * as authActions from "../store/actions/auth"
 

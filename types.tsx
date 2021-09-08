@@ -8,7 +8,7 @@ declare global {
 
 export type RootStackParamList = {
   DevicesList: undefined;
-  DeviceLogList: undefined;
+  DeviceLogList: DeviceLogListScreenParams;
 };
 
 export type AuthStackParamList = {
@@ -18,10 +18,14 @@ export type AuthStackParamList = {
 // Params of Screens
 
 export type LoginScreenParams = {};
+export type DeviceLogListScreenParams = {
+  deviceNo:number
+};
 
 // Components
 
 // Custom Object Types
+export type DeviceNo = [a: string];
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;

@@ -1,7 +1,14 @@
 import { AUTHENTICATE, LOGOUT, SET_DID_TRY_AL } from "../actions/auth";
 
-const initialState = {
-  token: null,
+type initialStateTypes = {
+  app_token: null | string,
+  userId: null | number,
+  didTryAutoLogin: boolean,
+};
+
+
+const initialState : initialStateTypes = {
+  app_token: null,
   userId: null,
   didTryAutoLogin: false,
 };
@@ -10,15 +17,15 @@ export default (state = initialState, action: any) => {
   switch (action.type) {
     case AUTHENTICATE:
       return {
-        token: action.payload.token,
+        app_token: action.payload.app_token,
         userId: action.payload.userId,
       };
-
-    case LOGOUT:
-      return {
-        ...initialState,
-        didTryAutoLogin: true,
-      };
+      case LOGOUT:
+        return {
+          ...initialState,
+          didTryAutoLogin: true,
+        };
+        
     case SET_DID_TRY_AL:
       return {
         ...state,

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { userLogin, userDatas } from "../redux-types";
+import { userLogin } from "../redux-types";
 
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
@@ -15,9 +15,9 @@ const saveDataToStorage = (app_token: string, userId: number) => {
   );
 };
 
-export const authenticate = (userId: number, token: string) => {
+export const authenticate = (userId: number, app_token: string) => {
   return (dispatch: any) => {
-    dispatch({ type: AUTHENTICATE, userId, token });
+    dispatch({ type: AUTHENTICATE, payload:{userId, app_token} });
   };
 };
 
@@ -53,7 +53,6 @@ export const logout = () => {
   AsyncStorage.removeItem("userData");
   return { type: LOGOUT };
 };
-
 export const setDidTryAL = () => {
   return { type: SET_DID_TRY_AL };
 };

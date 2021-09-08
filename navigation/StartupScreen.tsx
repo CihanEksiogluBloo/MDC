@@ -18,16 +18,17 @@ const StartupScreen = () => {
         return;
       }
       const transformedData = JSON.parse(userData);
-      const { token, userId } = transformedData;
+      const { app_token, userId } = transformedData;
 
-      if ( !token || !userId) {
+      if ( !app_token || !userId) {
         dispatch(authActions.setDidTryAL());
         return;
       }
 
-      dispatch(authActions.login(userId, token));
+
+      dispatch(authActions.authenticate(userId, app_token));
     };
-    
+
     tryLogin();
   }, [dispatch]);
 
