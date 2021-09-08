@@ -78,5 +78,6 @@ const styles = StyleSheet.create({
   },
   valueText: {
     fontSize: 16,
+    color: Colors.value,
   },
 });

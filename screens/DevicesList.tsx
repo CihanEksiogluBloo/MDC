@@ -43,7 +43,7 @@ const DevicesList: React.FC<
        <Button color={Colors.primary} title="Search" onPress={deviceSearchActionHandler} />
        </View>
       </View>
-      {devicesList.length > 0 && <Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold",color:"#11324D"}}> Devices List </Text>}
+      {devicesList?.length > 0 && <Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold",color:"#11324D"}}> Devices List </Text>}
 
      
       <View>

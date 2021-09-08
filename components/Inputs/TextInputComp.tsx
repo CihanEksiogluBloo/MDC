@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import Colors from "../../constants/Colors";
 import Color from "../../constants/Colors";
 
 interface InputParams {
@@ -7,7 +8,7 @@ interface InputParams {
   Value: string;
   Required: boolean;
   ErrorText: string;
-  setValue: (value: string ) => void;
+  setValue: (value: string) => void;
   secureTextEntry?: boolean;
 }
 
@@ -55,9 +56,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderBottomColor: Color.greyish,
     borderBottomWidth: 1,
+    color: Colors.primary,
+    fontWeight: "bold",
   },
   formControl: { width: "100%" },
-  label: { marginVertical: 8 },
+  label: { marginVertical: 8, color: Colors.title, fontWeight: "bold" },
   errorMessage: {
     color: "red",
     fontSize: 13,

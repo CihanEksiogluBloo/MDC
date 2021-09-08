@@ -5,6 +5,7 @@ import { RootStackParamList } from "../types";
 import * as devicesAction from "../store/actions/devices";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import DeviceLogListComp from "../components/UI/DeviceLogListComp";
 
 const DeviceLogList: React.FC<
   NativeStackScreenProps<RootStackParamList, "DeviceLogList">
@@ -37,15 +38,18 @@ const DeviceLogList: React.FC<
       <FlatList
         data={devicesLogList}
         keyExtractor={(item) => item.input}
+        numColumns={2}
         renderItem={({ item }) => {
           return (
-            <View>
-              <Text>{item.t}</Text>
-              <Text>{item.min}</Text>
-              <Text>{item.max}</Text>
-              <Text>{item.input}</Text>
-              <Text>{item.title}</Text>
-              <Text>{item.symbol}</Text>
+            <View style={{alignItems:"center",flex:1, marginVertical:10}}>
+              <DeviceLogListComp 
+              input={item.input}
+              max={item.max}
+              min ={item.min}
+              symbol={item.symbol}
+              title ={item.title}
+              t ={item.t}
+              />
             </View>
           );
         }}
