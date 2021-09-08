@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
 import { Device } from "../store/redux-types";
 import DeviceContainer from "../components/UI/DeviceContainer";
+import Colors from "../constants/Colors";
 
 const DevicesList: React.FC<
   NativeStackScreenProps<RootStackParamList, "DevicesList">
@@ -30,6 +31,7 @@ const DevicesList: React.FC<
 
   return (
     <View>
+      <View style={styles.inputContainer}>
       <TextInputComp
         ErrorText={"Text"}
         Label="Device No:"
@@ -37,7 +39,13 @@ const DevicesList: React.FC<
         Value={deviceNo}
         setValue={setDeviceNo}
       />
-      <Button title="Search" onPress={deviceSearchActionHandler} />
+      <View style={{margin:10, width:"50%", alignSelf:"center"}}>
+       <Button color={Colors.primary} title="Search" onPress={deviceSearchActionHandler} />
+       </View>
+      </View>
+      {devicesList.length > 0 && <Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold",color:"#11324D"}}> Devices List </Text>}
+
+     
       <View>
         <FlatList
           data={devicesList}
@@ -63,4 +71,13 @@ const DevicesList: React.FC<
 
 export default DevicesList;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  inputContainer:{
+    margin:10,
+    padding:10,
+    borderRadius:10,
+    backgroundColor:Colors.componentBG
+
+  }
+
+});
