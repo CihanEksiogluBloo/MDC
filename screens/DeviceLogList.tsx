@@ -54,7 +54,6 @@ const DeviceLogList: React.FC<
           );
         }}
       />
-      <Button title="Go" onPress={fetchDeviceLogList} />
     </View>
   );
 };
