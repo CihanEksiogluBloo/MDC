@@ -7,6 +7,7 @@ import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import * as authAction from "../store/actions/auth";
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const DeviceStackNavigator = createStackNavigator<RootStackParamList>();
 
@@ -18,7 +19,7 @@ export const DeviceNavigator = () => {
         component={DevicesList}
         options={{
           headerRight: () => {
-            const dispatch = useDispatch()
+            const dispatch = useDispatch();
             return (
               <MaterialCommunityIcons
                 style={{ marginHorizontal: 10 }}
@@ -27,7 +28,6 @@ export const DeviceNavigator = () => {
                 color="black"
                 onPress={() => {
                   dispatch(authAction.logout());
-
                 }}
               />
             );
@@ -47,7 +47,10 @@ const AuthStackNavigator = createStackNavigator<AuthStackParamList>();
 export const AuthNavigator = () => {
   return (
     <AuthStackNavigator.Navigator initialRouteName={"Login"}>
-      <AuthStackNavigator.Screen name="Login" component={Login} />
+      <AuthStackNavigator.Screen options={
+        {headerShown:false,
+        }
+      } name="Login" component={Login} />
     </AuthStackNavigator.Navigator>
   );
 };
