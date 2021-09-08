@@ -18,11 +18,6 @@ const DeviceLogList: React.FC<
   const devicesLogList = useSelector((state) => state.devices.devicesLogList);
   //const deviceLastData = useSelector((state) => state.devices.deviceLastData);
 
-  const fetchDeviceLogList = () => {
-    dispatch(
-      devicesAction.userDeviceLogList(app_token, userId, deviceNo.toString())
-    );
-  };
 
   useEffect(() => {
     const fetchDeviceLogList = () => {
@@ -41,14 +36,14 @@ const DeviceLogList: React.FC<
         numColumns={2}
         renderItem={({ item }) => {
           return (
-            <View style={{alignItems:"center",flex:1, marginVertical:10}}>
-              <DeviceLogListComp 
-              input={item.input}
-              max={item.max}
-              min ={item.min}
-              symbol={item.symbol}
-              title ={item.title}
-              t ={item.t}
+            <View style={{ alignItems: "center", flex: 1, marginVertical: 10 }}>
+              <DeviceLogListComp
+                input={item.input}
+                max={item.max}
+                min={item.min}
+                symbol={item.symbol}
+                title={item.title}
+                t={item.t}
               />
             </View>
           );
