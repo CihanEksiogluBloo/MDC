@@ -18,7 +18,6 @@ const DeviceLogList: React.FC<
   const devicesLogList = useSelector((state) => state.devices.devicesLogList);
   //const deviceLastData = useSelector((state) => state.devices.deviceLastData);
 
-
   useEffect(() => {
     const fetchDeviceLogList = () => {
       dispatch(

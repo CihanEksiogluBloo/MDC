@@ -76,7 +76,14 @@ const styles = StyleSheet.create({
     margin:10,
     padding:10,
     borderRadius:10,
-    backgroundColor:Colors.componentBG
+    backgroundColor:Colors.componentBG,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 7,
 
   }
 
