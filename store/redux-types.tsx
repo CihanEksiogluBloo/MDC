@@ -1,5 +1,6 @@
 export type userLogin = error | userDatas;
 export type userDeviceData = error | userDeviceResData;
+export type DeviceLogListResData = error | DeviceLogList;
 
 type error = {
   error: string;
@@ -22,4 +23,21 @@ export type Device = [
     konum: string;
     son_haberlesme: string;
   }
-]
+];
+
+export type DeviceLogList = {
+  [key: number]: {
+    cihaz_no: number;
+    cihaz_tur: DeviceTypeInterface[];
+  };
+  cihaz_last_data: [];
+};
+
+export interface DeviceTypeInterface {
+    t: number;
+    min: number;
+    max: number;
+    input: string;
+    title: string;
+    symbol: string;
+}
