@@ -3,9 +3,9 @@ import { Device, DeviceTypeInterface } from "../redux-types";
 
 type initialStateTypes = {
   devicesList: Device[];
-  devicesLogList: DeviceTypeInterface[];
+  devicesLogList: DeviceTypeInterface[] ;
   deviceLastData: any[];
-  error: string | undefined;
+  error?: string | undefined;
 };
 
 const initialState = {
@@ -18,7 +18,7 @@ const initialState = {
 export default (
   state: initialStateTypes = initialState,
   action: DeviceAction
-) => {
+): initialStateTypes => {
   switch (action.type) {
     case "USER_DEVICE_SEARCH":
       return {
@@ -32,6 +32,7 @@ export default (
       const cihaz_tur = devicesLogListResult[objectKey].cihaz_tur;
 
       return {
+        ...state,
         devicesLogList: cihaz_tur,
         deviceLastData: devicesLogListResult.cihaz_last_data,
       };

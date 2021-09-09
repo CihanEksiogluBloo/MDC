@@ -3,8 +3,8 @@ import { AuthAction } from "../actions/auth";
 export type AuthinitialStateTypes = {
   app_token: null | string;
   userId: null | number;
-  didTryAutoLogin: boolean;
-  error: string | undefined;
+  didTryAutoLogin?: boolean | undefined;
+  error?: string | undefined;
 };
 
 const initialState = {
@@ -17,7 +17,7 @@ const initialState = {
 export default (
   state: AuthinitialStateTypes = initialState,
   action: AuthAction
-) => {
+): AuthinitialStateTypes => {
   switch (action.type) {
     case "AUTHENTICATE":
       return {

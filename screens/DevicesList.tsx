@@ -26,7 +26,9 @@ const DevicesList: React.FC<
   const dispatch = useDispatch();
 
   const deviceSearchActionHandler = () => {
-    dispatch(devicesActions.userDeviceSearch(app_token, userId, deviceNo));
+    dispatch(
+      devicesActions.userDeviceSearch(app_token!, userId!.toString(), deviceNo)
+    );
   };
   const deviceLogListPressHandler = (deviceNo: number) => {
     navigation.navigate("DeviceLogList", { deviceNo: deviceNo });
