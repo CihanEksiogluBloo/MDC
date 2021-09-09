@@ -6,16 +6,20 @@ import * as devicesAction from "../store/actions/devices";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import DeviceLogListComp from "../components/UI/DeviceLogListComp";
+import { ApplicationState } from "../store/reducers";
 
 const DeviceLogList: React.FC<
   NativeStackScreenProps<RootStackParamList, "DeviceLogList">
 > = ({ route }) => {
   const { deviceNo } = route.params;
   const dispatch = useDispatch();
-  const app_token = useSelector((state) => state.auth.app_token);
-  const userId = useSelector((state) => state.auth.userId);
+  const { app_token, userId } = useSelector(
+    (state: ApplicationState) => state.auth
+  );
 
-  const devicesLogList = useSelector((state) => state.devices.devicesLogList);
+  const { devicesLogList } = useSelector(
+    (state: ApplicationState) => state.devices
+  );
   //const deviceLastData = useSelector((state) => state.devices.deviceLastData);
 
   useEffect(() => {

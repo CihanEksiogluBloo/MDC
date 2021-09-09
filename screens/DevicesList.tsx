@@ -10,6 +10,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { Device } from "../store/redux-types";
 import DeviceContainer from "../components/UI/DeviceContainer";
 import Colors from "../constants/Colors";
+import { ApplicationState } from "../store/reducers";
 
 const DevicesList: React.FC<
   NativeStackScreenProps<RootStackParamList, "DevicesList">
@@ -17,9 +18,11 @@ const DevicesList: React.FC<
   const [deviceNo, setDeviceNo] = useState<string>("100000291");
 
   //redux constants
-  const app_token = useSelector((state) => state.auth.app_token);
-  const userId = useSelector((state) => state.auth.userId);
-  const devicesList: Device = useSelector((state) => state.devices.devicesList);
+  const { app_token } = useSelector((state: ApplicationState) => state.auth);
+  const { userId } = useSelector((state: ApplicationState) => state.auth);
+  const { devicesList } = useSelector(
+    (state: ApplicationState) => state.devices
+  );
   const dispatch = useDispatch();
 
   const deviceSearchActionHandler = () => {
@@ -32,20 +35,34 @@ const DevicesList: React.FC<
   return (
     <View>
       <View style={styles.inputContainer}>
-      <TextInputComp
-        ErrorText={"Text"}
-        Label="Device No:"
-        Required={true}
-        Value={deviceNo}
-        setValue={setDeviceNo}
-      />
-      <View style={{margin:10, width:"50%", alignSelf:"center"}}>
-       <Button color={Colors.primary} title="Search" onPress={deviceSearchActionHandler} />
-       </View>
+        <TextInputComp
+          ErrorText={"Text"}
+          Label="Device No:"
+          Required={true}
+          Value={deviceNo}
+          setValue={setDeviceNo}
+        />
+        <View style={{ margin: 10, width: "50%", alignSelf: "center" }}>
+          <Button
+            color={Colors.primary}
+            title="Search"
+            onPress={deviceSearchActionHandler}
+          />
+        </View>
       </View>
-      {devicesList?.length > 0 && <Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold",color:"#11324D"}}> Devices List </Text>}
+      {devicesList?.length > 0 && (
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#11324D",
+          }}
+        >
+          Devices List
+        </Text>
+      )}
 
-     
       <View>
         <FlatList
           data={devicesList}
@@ -72,11 +89,11 @@ const DevicesList: React.FC<
 export default DevicesList;
 
 const styles = StyleSheet.create({
-  inputContainer:{
-    margin:10,
-    padding:10,
-    borderRadius:10,
-    backgroundColor:Colors.componentBG,
+  inputContainer: {
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: Colors.componentBG,
     shadowOffset: {
       width: 0,
       height: 3,
@@ -84,7 +101,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 7,
-
-  }
-
+  },
 });

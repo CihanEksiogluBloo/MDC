@@ -1,19 +1,19 @@
 export type userLogin = error | userDatas;
 export type userDeviceData = error | userDeviceResData;
-export type DeviceLogListResData = error | DeviceLogList;
+export type DeviceLogListResData = DeviceLogList;
 
-type error = {
+export type error = {
   error: string;
 };
-type userDatas = {
+export type userDatas = {
   app_token: string;
   userid: number;
 };
 
-type userDeviceResData = {
+export type userDeviceResData = {
   token: boolean;
   userid: string;
-  cihaz_no: Device;
+  cihaz_no: Device[];
 };
 
 export type Device = [
@@ -34,10 +34,10 @@ export type DeviceLogList = {
 };
 
 export interface DeviceTypeInterface {
-    t: number;
-    min: number;
-    max: number;
-    input: string;
-    title: string;
-    symbol: string;
+  t: number;
+  min: number;
+  max: number;
+  input: string;
+  title: string;
+  symbol: string;
 }
