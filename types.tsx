@@ -15,6 +15,9 @@ export type AuthStackParamList = {
     Login: LoginScreenParams;
   };
 
+export type DrawerParamList = {
+  DevicesNavigator: undefined;
+}
 // Params of Screens
 
 export type LoginScreenParams = {};

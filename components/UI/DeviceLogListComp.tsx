@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  TouchableOpacity,
-  TouchableNativeFeedback,
 } from "react-native";
+import { useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
+import { ApplicationState } from "../../store/reducers";
 import CustomText from "./CustomText";
 
 interface DeviceLogListParams {
@@ -28,9 +27,9 @@ const DeviceLogListComp: React.FC<DeviceLogListParams> = ({
   symbol,
 }) => {
   return (
-    <View style={styles.general}>
-      <View style={styles.LabelContainer}>
-        <Text numberOfLines={1} style={styles.Label}>
+    <View style={styles().general}>
+      <View style={styles().LabelContainer}>
+        <Text numberOfLines={1} style={styles().Label}>
           {title}
         </Text>
       </View>
@@ -50,21 +49,28 @@ const DeviceLogListComp: React.FC<DeviceLogListParams> = ({
 
 export default DeviceLogListComp;
 
-const styles = StyleSheet.create({
-  general: {
-    width: "90%",
-    height: "10%",
-  },
-  Label: {
-    fontWeight: "bold",
-    color: Colors.label,
-  },
-  LabelContainer: {
-    padding: 5,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderRadius: 10,
-    marginBottom: 7,
-    alignItems: "center",
-  },
-});
+const styles = () => {
+
+  const userTheme = useSelector(
+    (state: ApplicationState) => state.theme.userTheme
+  );
+
+  return StyleSheet.create({
+    general: {
+      width: "90%",
+      height: "10%",
+    },
+    Label: {
+      fontWeight: "bold",
+      color: Colors[userTheme].label,
+    },
+    LabelContainer: {
+      padding: 5,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+      borderRadius: 10,
+      marginBottom: 7,
+      alignItems: "center",
+    },
+  });
+};

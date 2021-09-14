@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, StyleSheet, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import * as devicesAction from "../store/actions/devices";
@@ -13,19 +13,25 @@ const DeviceLogList: React.FC<
 > = ({ route }) => {
   const { deviceNo } = route.params;
   const dispatch = useDispatch();
+
   const { app_token, userId } = useSelector(
     (state: ApplicationState) => state.auth
   );
 
-  const { devicesLogList } = useSelector(
-    (state: ApplicationState) => state.devices
+  const devicesLogList = useSelector(
+    (state: ApplicationState) => state.devices.devicesLogList
   );
+
   //const deviceLastData = useSelector((state) => state.devices.deviceLastData);
 
   useEffect(() => {
     const fetchDeviceLogList = () => {
       dispatch(
-        devicesAction.userDeviceLogList(app_token, userId, deviceNo.toString())
+        devicesAction.userDeviceLogList(
+          app_token!,
+          userId!.toString(),
+          deviceNo.toString()
+        )
       );
     };
     fetchDeviceLogList();

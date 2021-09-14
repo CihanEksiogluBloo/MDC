@@ -23,6 +23,9 @@ const DevicesList: React.FC<
   const { devicesList } = useSelector(
     (state: ApplicationState) => state.devices
   );
+  const userTheme = useSelector(
+    (state: ApplicationState) => state.theme.userTheme
+  );
   const dispatch = useDispatch();
 
   const deviceSearchActionHandler = () => {
@@ -31,12 +34,12 @@ const DevicesList: React.FC<
     );
   };
   const deviceLogListPressHandler = (deviceNo: number) => {
-    navigation.navigate("DeviceLogList", { deviceNo: deviceNo });
+    navigation.navigate("DeviceLogList", { deviceNo });
   };
 
   return (
     <View>
-      <View style={styles.inputContainer}>
+      <View style={styles().inputContainer}>
         <TextInputComp
           ErrorText={"Text"}
           Label="Device No:"
@@ -46,7 +49,7 @@ const DevicesList: React.FC<
         />
         <View style={{ margin: 10, width: "50%", alignSelf: "center" }}>
           <Button
-            color={Colors.primary}
+            color={Colors[userTheme].primary}
             title="Search"
             onPress={deviceSearchActionHandler}
           />
@@ -58,7 +61,7 @@ const DevicesList: React.FC<
             alignSelf: "center",
             fontSize: 20,
             fontWeight: "bold",
-            color: "#11324D",
+            color: Colors[userTheme].title,
           }}
         >
           Devices List
@@ -90,18 +93,24 @@ const DevicesList: React.FC<
 
 export default DevicesList;
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    margin: 10,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: Colors.componentBG,
-    shadowOffset: {
-      width: 0,
-      height: 3,
+const styles = () => {
+  const userTheme = useSelector(
+    (state: ApplicationState) => state.theme.userTheme
+  );
+
+  return StyleSheet.create({
+    inputContainer: {
+      margin: 10,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: Colors[userTheme].componentBG,
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.27,
+      shadowRadius: 4.65,
+      elevation: 7,
     },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 7,
-  },
-});
+  });
+};

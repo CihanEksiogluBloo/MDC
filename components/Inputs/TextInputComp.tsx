@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import { useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import Color from "../../constants/Colors";
+import { ApplicationState } from "../../store/reducers";
 
 interface InputParams {
   Label: "Email" | "Password" | "Device No:";
@@ -32,42 +34,52 @@ const TextInputComp: React.FC<InputParams> = ({
   }
 
   return (
-    <View style={styles.formControl}>
-      <Text style={styles.label}>{Label}</Text>
+    <View style={styles().formControl}>
+      <Text style={styles().label}>{Label}</Text>
 
       <TextInput
         secureTextEntry={secureTextEntry ? secureTextEntry : false}
-        style={styles.input}
+        style={styles().input}
         value={Value}
         onChangeText={(e) => setValue(e)}
       />
       {!isValid && Required && Value != "" && (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorMessage}>{ErrorText}</Text>
+        <View style={styles().errorContainer}>
+          <Text style={styles().errorMessage}>{ErrorText}</Text>
         </View>
       )}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: Color.greyish,
-    borderBottomWidth: 1,
-    color: Colors.primary,
-    fontWeight: "bold",
-  },
-  formControl: { width: "100%" },
-  label: { marginVertical: 8, color: Colors.title, fontWeight: "bold" },
-  errorMessage: {
-    color: "red",
-    fontSize: 13,
-  },
-  errorContainer: {
-    marginVertical: 5,
-  },
-});
+const styles = () => {
+  const userTheme = useSelector(
+    (state: ApplicationState) => state.theme.userTheme
+  );
+
+  return StyleSheet.create({
+    input: {
+      paddingHorizontal: 2,
+      paddingVertical: 5,
+      borderBottomColor: Color[userTheme].greyish,
+      borderBottomWidth: 1,
+      color: Colors[userTheme].label,
+      fontWeight: "bold",
+    },
+    formControl: { width: "100%" },
+    label: {
+      marginVertical: 8,
+      color: Colors[userTheme].title,
+      fontWeight: "bold",
+    },
+    errorMessage: {
+      color: "red",
+      fontSize: 13,
+    },
+    errorContainer: {
+      marginVertical: 5,
+    },
+  });
+};
 
 export default TextInputComp;

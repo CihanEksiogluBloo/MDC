@@ -16,14 +16,12 @@ export type userDeviceResData = {
   cihaz_no: Device[];
 };
 
-export type Device = [
-  {
-    cihaz_no: number;
-    ad_soyad: string;
-    konum: string;
-    son_haberlesme: string;
-  }
-];
+export type Device = {
+  cihaz_no: number;
+  ad_soyad: string;
+  konum: string;
+  son_haberlesme: string;
+};
 
 export type DeviceLogList = {
   [key: number]: {
@@ -41,3 +39,5 @@ export interface DeviceTypeInterface {
   title: string;
   symbol: string;
 }
+
+export type UserSelectableThemes = "light" | "dark"

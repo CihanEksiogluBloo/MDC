@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../types";
 import TextInputComp from "../components/Inputs/TextInputComp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as authActions from "../store/actions/auth";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
+import { ApplicationState } from "../store/reducers";
 
 const errorMessage = "This field must be filled in correctly.";
 
@@ -16,6 +17,10 @@ const Login: React.FC<NativeStackScreenProps<AuthStackParamList, "Login">> =
     const [password, setPassword] = useState<string>("");
 
     const dispatch = useDispatch();
+
+    const userTheme = useSelector(
+      (state: ApplicationState) => state.theme.userTheme
+    );
 
     return (
       <SafeAreaView style={styles.screen}>
@@ -45,7 +50,7 @@ const Login: React.FC<NativeStackScreenProps<AuthStackParamList, "Login">> =
               onPress={() => {
                 dispatch(authActions.login(email, password));
               }}
-              color={Colors.primary}
+              color={Colors[userTheme].primary}
             />
           </View>
         </View>
